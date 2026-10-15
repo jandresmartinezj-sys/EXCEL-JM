@@ -137,7 +137,7 @@ Puntaje de 1 a 5 (5 = mejor). Ponderación: impacto 25% · confianza 20% · cost
 ### Ranking revisado
 | # | Línea | Score | Clase |
 |---|---|---|---|
-| L1 | **Gestión financiera y de cartera para IPS** (cartera por edades, conciliación con EPS, deterioro, reportes a la Supersalud, flujo de caja) | **4.25** | A |
+| L1 | **Gestión financiera y de cartera para IPS** (cartera por edades, conciliación con EPS, deterioro, reportes a la Supersalud, flujo de caja) | **4.30** | A |
 | L2 | Contabilidad mensual empaquetada para pymes y emprendedores (local + remoto) | 4.15 | A |
 | L3 | Plantillas Excel como imán de clientes | 4.10 | A (apoyo) |
 | L4 | Renta de personas naturales (extemporáneas ahora; temporada 2027) | 3.75 | B |
@@ -183,8 +183,8 @@ Ponderación: impacto 20% · confianza 15% · **velocidad de cobro 20%** · cost
 | # | Línea | Imp | Conf | Cobro | Costo | Rap | Riesgo | Valid | **Score** | Clase |
 |---|---|---|---|---|---|---|---|---|---|---|
 | L1 | Contabilidad mensual para pymes y emprendedores (local + remoto), **pago anticipado** | 4 | 4 | 5 | 5 | 4 | 4 | 4 | **4.30** | A |
-| L2 | Diagnóstico financiero + CFO fraccional para pymes | 5 | 3 | 4 | 5 | 3 | 4 | 3 | **3.85** | B |
-| L3 | Ganaderos y agro de Córdoba (renta, patrimonio, facturación electrónica, costos) | 4 | 3 | 4 | 5 | 3 | 4 | 3 | **3.75** | C (validar) |
+| L2 | Diagnóstico financiero + CFO fraccional para pymes | 5 | 3 | 4 | 5 | 3 | 4 | 3 | **3.90** | B |
+| L3 | Ganaderos y agro de Córdoba (renta, patrimonio, facturación electrónica, costos) | 4 | 3 | 4 | 5 | 3 | 4 | 3 | **3.70** | C (validar) |
 | L4 | Renta de personas naturales / extemporáneas (pago antes de presentar) | 3 | 4 | 5 | 5 | 3 | 4 | 3 | **3.85** | B |
 | L5 | Plantillas Excel (pago inmediato, imán de clientes) | 2 | 3 | 5 | 5 | 5 | 5 | 5 | **4.10** | A (apoyo) |
 
