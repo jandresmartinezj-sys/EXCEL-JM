@@ -5,6 +5,7 @@ Negocio de servicios contables, financieros y tributarios + herramientas en Exce
 | Carpeta | Contenido |
 |---|---|
 | `estrategia/` | Mapa de oportunidades, plan de 30 días, decisiones |
+| `comercial/` | Oferta, precios, mensajes de prospección, propuesta, indicadores |
 | `plantillas/` | Herramientas Excel listas para usar |
 | `scripts/` | Generadores de plantillas (`python3 scripts/generar_cartera.py`, requiere `openpyxl`) |
 

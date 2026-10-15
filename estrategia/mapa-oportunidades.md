@@ -119,3 +119,52 @@ Puntaje de 1 a 5 (5 = mejor). Ponderación: impacto 25% · confianza 20% · cost
 - Nómina y reforma laboral: https://www.portafolio.co/economia/empleo/nomina-electronica-en-2026-el-reto-es-hacer-bien-las-cuentas-502607
 - Facturación electrónica: https://www.tiendanube.com/blog/factura-electronica-colombia/
 - Ley de financiamiento (estado incierto): https://www.pwc.com/co/es/pwc-insights/reforma-tributaria-2026-ley-de-financiamiento.html
+
+---
+
+## Actualización 2026-10-15: respuestas del usuario
+
+**Confirmado:** sede en Montería, atención local y remota, dedicación de tiempo completo, manejo de varios software (Siigo, Alegra, World Office, Manager, ContaPyme, SISMA y otros) y **red de contactos en el sector salud**.
+
+### Qué cambia
+1. **El nicho salud sube a la clase A.** Pasa de "experimento" a **línea principal**, porque ahora se cumplen 3 condiciones:
+   - Dolor severo y documentado: casi el 50% de los activos de las IPS son cuentas por cobrar (`FACT`, ACHC vía Publimetro, abril de 2026). Las deudas del sector superan los $25 billones (`FACT`). La cartera con EPS liquidadas queda "prácticamente perdida" (`FACT`, ACHC).
+   - Ventaja propia: experiencia demostrada en cartera y reportes de IPS, más una red de contactos.
+   - Cliente que valora el resultado (recuperar caja y cumplir con la Supersalud), no el precio de la hora.
+2. **Manejar varios software es un diferenciador para el servicio remoto:** "trabajo en el software que ya usas". Además habilita un servicio de **implementación o migración de software contable**.
+3. **El tiempo completo permite operar dos líneas a la vez:** salud (alto valor) y pymes/emprendedores (volumen y flujo de caja).
+
+### Ranking revisado
+| # | Línea | Score | Clase |
+|---|---|---|---|
+| L1 | **Gestión financiera y de cartera para IPS** (cartera por edades, conciliación con EPS, deterioro, reportes a la Supersalud, flujo de caja) | **4.25** | A |
+| L2 | Contabilidad mensual empaquetada para pymes y emprendedores (local + remoto) | 4.15 | A |
+| L3 | Plantillas Excel como imán de clientes | 4.10 | A (apoyo) |
+| L4 | Renta de personas naturales (extemporáneas ahora; temporada 2027) | 3.75 | B |
+| L5 | Implementación o migración de software contable | 3.60 | B |
+
+L1: Imp 5 · Conf 4 · Costo 5 · Rap 4 · Riesgo 3 (las IPS pagan tarde → cobro anticipado) · Valid 4.
+L5: Imp 3 · Conf 3 · Costo 5 · Rap 4 · Riesgo 4 · Valid 3.
+
+### Modelo de ingresos con tiempo completo (`ESTIMATE`; precios por validar)
+Capacidad útil de ~140 h/mes facturables.
+
+| Cliente | Horas/mes | Precio/mes (hipótesis) | Meta mes 3 | Ingreso |
+|---|---|---|---|---|
+| IPS (L1) | ~25 | $2.500.000–4.000.000 | 2 | $5–8 M |
+| Pyme (L2) | ~7 | $450.000–1.100.000 | 8 | $3,6–8,8 M |
+| **Total** | ~106 h | | | **~$8,6–16,8 M/mes** |
+
+Supuestos: los precios no están validados y las horas por cliente varían según el volumen de facturas. Indicador de control: **ingreso por hora ≥ $80.000**.
+
+### Plan de 30 días revisado
+| Semana | Acción | Meta |
+|---|---|---|
+| 1 | Lista de 30 IPS de la red + 30 pymes · escribir 5 mensajes de prospección · perfiles de Google Business y WhatsApp Business | 60 contactos listos |
+| 2 | Ofrecer el **diagnóstico de cartera gratuito en 48 h** a las IPS (con la plantilla) · 10 diagnósticos/entrevistas con pymes | 5 diagnósticos de IPS en curso |
+| 3 | Entregar los diagnósticos con propuesta · cerrar | 1 IPS + 3 pymes pagas |
+| 4 | Medir horas reales, $/hora y objeciones · ajustar precios y paquetes | Decisión sobre precios |
+
+Fuentes adicionales:
+- [Publimetro: deudas del sector salud (abril de 2026)](https://www.publimetro.co/noticias/2026/04/21/deudas-del-sector-salud-superan-los-25-billones-eps-intervenidas-concentran-la-mayor-parte/)
+- [Consultorsalud: herramienta de reporte de cartera de la Supersalud](https://consultorsalud.com/supersalud-estrena-reporte-de-cartera/)
