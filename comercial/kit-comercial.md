@@ -6,29 +6,16 @@ Precios = `HYPOTHESIS` a validar en las primeras 10 conversaciones. Ajustar seg�
 
 ## 1. Posicionamiento
 
-**Salud (IPS):**
-> "Ayudo a las IPS a convertir su cartera en caja: ordeno y analizo la cartera por edades y por
-> EPS, calculo el deterioro y dejo listos los reportes a la Supersalud, para que la gerencia sepa
-> exactamente cuánto le deben, quién y qué hacer."
-
 **Pymes y emprendedores:**
 > "Tu contabilidad e impuestos al día a precio fijo, en el software que ya usas, con un reporte
 > mensual que entiendes en 5 minutos."
 
-**Diferenciadores:** contador público con TP · experiencia en cartera del sector salud · trabajo en
+**Diferenciadores:** contador público con TP · experiencia en gestión de cartera · trabajo en
 Siigo, Alegra, World Office, Manager, ContaPyme, SISMA y más · atención presencial en Montería o remota.
 
 ---
 
 ## 2. Oferta
-
-### Línea salud (IPS)
-| Servicio | Incluye | Precio (hipótesis) |
-|---|---|---|
-| **Diagnóstico de cartera (puerta de entrada)** | Cartera por edades y por EPS, % vencido, concentración, deterioro estimado, 3 recomendaciones. Entrega en 48 h | **Gratis** para las primeras 5 IPS; luego $400.000 |
-| Gestión de cartera mensual | Edades por EPS, conciliación, seguimiento de radicación y glosas, informe gerencial | $2.500.000–4.000.000/mes |
-| Reporte a la Supersalud | Preparación y validación del anexo de cuentas por cobrar y la información financiera | Por reporte o incluido en el plan mensual |
-| Contabilidad completa IPS | Contabilidad + impuestos + cartera + informe | Cotización según el volumen |
 
 ### Línea pymes y emprendedores
 | Paquete | Para quién | Incluye | Precio (hipótesis) |
@@ -37,25 +24,30 @@ Siigo, Alegra, World Office, Manager, ContaPyme, SISMA y más · atención prese
 | **Empresa** | SAS con empleados, <200 docs/mes | + nómina electrónica, retenciones, informe mensual | $750.000/mes |
 | **Crecimiento** | Pyme en expansión | + flujo de caja, presupuesto, KPI, reunión mensual | $1.100.000/mes |
 
+**Diagnóstico financiero (puerta de entrada):** caja, cartera, márgenes y riesgos con la DIAN en 1 página. Gratis para los primeros 10; luego $300.000 (abonable al primer mes).
+
+**CFO fraccional:** flujo de caja a 13 semanas, cartera, costos, precios, KPI y reunión mensual · $1.800.000–3.000.000/mes.
+
+**Ganaderos y agro (piloto):** renta y patrimonio, facturación electrónica de ventas, control de costos por lote · desde $500.000/mes o por declaración.
+
 Extras: migración o implementación de software · renta de personas naturales · declaraciones extemporáneas y correcciones.
 
-**Reglas comerciales:** pago anticipado mensual · contrato escrito · alcance definido por volumen de documentos.
+**Reglas comerciales:** pago anticipado mensual (los primeros 5 días del mes; atraso >15 días = servicio suspendido) · contrato escrito · alcance definido por volumen de documentos.
 
 ---
 
 ## 3. Mensajes de prospección (WhatsApp)
 
-### A. IPS — contacto conocido
-> Hola [Nombre], ¿cómo vas? Te escribo porque estoy ayudando a IPS con un tema que casi
-> todas tienen: la cartera con las EPS. Te ofrezco un **diagnóstico gratuito de tu cartera en
-> 48 horas**: cuánto está vencido por edades y por EPS, el riesgo de deterioro y qué cobrar
-> primero. Solo necesito el auxiliar de cartera o el reporte por edades. ¿Te sirve que lo hagamos
-> esta semana?
+### A. Ganadero / agro
+> Hola [Nombre], soy [Tu nombre], contador público en Montería. Trabajo con ganaderos en la
+> declaración de renta y patrimonio, la facturación electrónica de las ventas de ganado y el
+> control de costos de la finca. ¿Te puedo hacer una revisión gratis de 20 minutos para ver si
+> estás pagando de más o tienes algún riesgo con la DIAN?
 
-### B. IPS — referido
-> Hola [Nombre], [Referido] me sugirió escribirte. Soy contador público y trabajo con IPS en la
-> gestión de cartera y los reportes a la Supersalud. Hago un diagnóstico de cartera sin costo en
-> 48 horas. ¿Te puedo contar en 10 minutos cómo funciona?
+### B. Pyme — diagnóstico financiero
+> Hola [Nombre], ¿sabes exactamente cuánto te queda cada mes después de impuestos? Hago un
+> **diagnóstico financiero gratuito** de tu negocio: caja, cartera, márgenes y riesgos con la DIAN,
+> en una página. ¿Te sirve esta semana?
 
 ### C. Pyme / emprendedor
 > Hola [Nombre], soy [Tu nombre], contador público en Montería. Ayudo a negocios como el tuyo a
@@ -71,13 +63,11 @@ Extras: migración o implementación de software · renta de personas naturales 
 
 ## 4. Preguntas de diagnóstico
 
-**IPS:**
-1. ¿Cuánto es la cartera total y qué % está a más de 180 días?
-2. ¿Con qué EPS está concentrada? ¿Alguna está intervenida o en liquidación?
-3. ¿Quién concilia con las EPS y cada cuánto?
-4. ¿Cómo se calcula hoy el deterioro? ¿Está registrado?
-5. ¿Han tenido requerimientos de la Supersalud por los reportes?
-6. ¿Qué pasaría con la caja si recuperaran el 10% de la cartera vencida?
+**Ganadero / agro:**
+1. ¿Declaras renta como persona natural? ¿Quién la prepara hoy?
+2. ¿Cómo facturas las ventas de ganado o de cosecha?
+3. ¿Llevas los costos por lote o por finca?
+4. ¿Has tenido requerimientos de la DIAN o problemas con el patrimonio?
 
 **Pyme:**
 1. ¿Qué régimen tienes (SIMPLE u ordinario)? ¿Facturas electrónicamente?
@@ -105,6 +95,6 @@ Extras: migración o implementación de software · renta de personas naturales 
 | Contactos realizados | 60 |
 | Diagnósticos realizados | 10 |
 | Propuestas enviadas | 6 |
-| Clientes cerrados | 1 IPS + 3 pymes |
+| Clientes cerrados | 4 pymes (1 con CFO fraccional) |
 | Conversión diagnóstico → cliente | ≥ 30% |
 | Ingreso por hora real | ≥ $80.000 |

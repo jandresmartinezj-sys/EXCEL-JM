@@ -168,3 +168,28 @@ Supuestos: los precios no están validados y las horas por cliente varían segú
 Fuentes adicionales:
 - [Publimetro: deudas del sector salud (abril de 2026)](https://www.publimetro.co/noticias/2026/04/21/deudas-del-sector-salud-superan-los-25-billones-eps-intervenidas-concentran-la-mayor-parte/)
 - [Consultorsalud: herramienta de reporte de cartera de la Supersalud](https://consultorsalud.com/supersalud-estrena-reporte-de-cartera/)
+
+---
+
+## Actualización 2: se descarta el nicho salud (D-01)
+
+**Decisión del usuario:** no trabajar con el sector salud. **Motivo:** experiencia directa con pagos lentos (meses).
+Esto coincide con la evidencia del sector: la cartera de las IPS pesa alrededor del 50% de sus activos. Un proveedor de IPS hereda la misma iliquidez.
+**Lección:** agregar **"velocidad de cobro"** como criterio obligatorio de selección de nicho.
+
+### Nuevo criterio
+Ponderación: impacto 20% · confianza 15% · **velocidad de cobro 20%** · costo 10% · rapidez 15% · riesgo 10% · validación 10%.
+
+| # | Línea | Imp | Conf | Cobro | Costo | Rap | Riesgo | Valid | **Score** | Clase |
+|---|---|---|---|---|---|---|---|---|---|---|
+| L1 | Contabilidad mensual para pymes y emprendedores (local + remoto), **pago anticipado** | 4 | 4 | 5 | 5 | 4 | 4 | 4 | **4.30** | A |
+| L2 | Diagnóstico financiero + CFO fraccional para pymes | 5 | 3 | 4 | 5 | 3 | 4 | 3 | **3.85** | B |
+| L3 | Ganaderos y agro de Córdoba (renta, patrimonio, facturación electrónica, costos) | 4 | 3 | 4 | 5 | 3 | 4 | 3 | **3.75** | C (validar) |
+| L4 | Renta de personas naturales / extemporáneas (pago antes de presentar) | 3 | 4 | 5 | 5 | 3 | 4 | 3 | **3.85** | B |
+| L5 | Plantillas Excel (pago inmediato, imán de clientes) | 2 | 3 | 5 | 5 | 5 | 5 | 5 | **4.10** | A (apoyo) |
+
+**Por qué el agro de Córdoba** (`HYPOTHESIS` por validar): Córdoba tenía 2.403.173 bovinos (7,8% del total nacional) en 31.599 predios (`FACT`, UPRA 2022). Hay muchos ganaderos personas naturales con patrimonio alto, obligación de declarar y facturación electrónica de ventas, y la competencia especializada es escasa. Falta validar la disposición a pagar y la informalidad.
+
+**Regla comercial para todas las líneas:** pago anticipado mensual. Si un cliente se atrasa más de 15 días, se suspende el servicio. Nada de clientes que paguen a 60 o 90 días.
+
+Fuente: [UPRA, microanálisis agropecuario de Córdoba](https://upra.gov.co/Kit_Territorial/2-%20Informaci%C3%B3n%20por%20Departamentos/C%C3%93RDOBA/3-%20Microan%C3%A1lisis%20Evaluaciones%20agropecuarias%202023-Cordoba.pdf)
