@@ -1,14 +1,18 @@
-# EXCEL-JM
+# EXCEL-JM · Ecosistema de la firma contable, tributaria y financiera
 
-Negocio de servicios contables, financieros y tributarios + herramientas en Excel.
+Sistema operativo completo del negocio: estrategia, áreas, procesos, control, documentos legales y herramientas.
+**Empieza por** `ecosistema/00-arquitectura.md` y `ecosistema/12-hoja-de-ruta.md`.
 
 | Carpeta | Contenido |
 |---|---|
-| `estrategia/` | Mapa de oportunidades, plan de 30 días, decisiones |
-| `comercial/` | Oferta, precios, mensajes de prospección, propuesta, indicadores |
-| `plantillas/` | Herramientas Excel listas para usar |
-| `scripts/` | Generadores de plantillas (`python3 scripts/generar_cartera.py`, requiere `openpyxl`) |
+| `ecosistema/` | 13 documentos por área: estrategia y marca, marketing, comercial, operaciones (SOP), servicio, finanzas internas, control interno y riesgos, legal, talento, tecnología, indicadores y hoja de ruta |
+| `legal/` | Contrato de prestación de servicios, carta de encargo, política de tratamiento de datos (modelos para revisar con un abogado) |
+| `comercial/` | Kit comercial: oferta, precios, mensajes de prospección, preguntas de diagnóstico |
+| `estrategia/` | Mapa de oportunidades, evidencia de mercado, decisiones |
+| `plantillas/` | Herramientas Excel |
+| `scripts/` | Generadores de las plantillas (`python3 scripts/<archivo>.py`, requiere `openpyxl`) |
 
 ## Plantillas
-- `cartera-por-edades-deterioro.xlsx`: cartera por edades (de no vencida a más de 360 días), deterioro por rango, indicadores y alertas.
-- `diagnostico-financiero-pyme.xlsx`: diagnóstico de 1 página + **propuesta comercial de 1 página** (hallazgos priorizados, caja potencial a liberar, plan recomendado, inversión y firma); con 13 indicadores (márgenes, liquidez, ciclo de caja, deuda, meses de caja, cumplimiento tributario), semáforo, puntaje de salud financiera y acciones recomendadas. Genera: `python3 scripts/generar_diagnostico.py`.
+- `centro-de-control.xlsx`: **herramienta diaria de la firma**. Tablero de 21 indicadores con semáforo, pipeline comercial, clientes y rentabilidad, obligaciones tributarias con alertas, registro de horas y facturación con cartera por edades.
+- `diagnostico-financiero-pyme.xlsx`: diagnóstico de 1 página (13 indicadores, semáforo, puntaje) + propuesta comercial automática.
+- `cartera-por-edades-deterioro.xlsx`: cartera por edades con deterioro e indicadores.
