@@ -1,7 +1,9 @@
-"""Genera la plantilla 'Diagnóstico financiero pyme' (salida de 1 página)."""
+"""Genera la plantilla 'Diagnóstico financiero pyme' + propuesta comercial (1 página cada una)."""
 import datetime as dt
 from openpyxl import Workbook
-from openpyxl.formatting.rule import CellIsRule, FormulaRule
+from openpyxl.formatting.rule import CellIsRule, FormulaRule, Rule
+from openpyxl.styles.differential import DifferentialStyle
+from openpyxl.styles.numbers import NumberFormat
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.worksheet.datavalidation import DataValidation
 
@@ -93,7 +95,7 @@ for r in list(range(11, 18)) + list(range(20, 30)) + [31] + list(range(34, 44)):
 
 # ---------- Parametros ----------
 p = wb.create_sheet("Parametros")
-head(p, 1, ["Indicador", "Dirección", "Verde si", "Rojo si", "Acción si ROJO", "Acción si AMARILLO"])
+head(p, 1, ["Indicador", "Dirección", "Verde si", "Rojo si", "Acción si ROJO", "Acción si AMARILLO", "Tipo"])
 for col, w in zip("ABCDEF", [28, 12, 10, 10, 60, 60]):
     p.column_dimensions[col].width = w
 # (nombre, dirección: 1 = más alto es mejor, -1 = más bajo es mejor, verde, rojo, formato, msg rojo, msg amarillo)
@@ -117,6 +119,7 @@ for i, (n, dr, g, r, fmt, mr, ma) in enumerate(KPIS, 2):
     for col, v in ((3, g), (4, r)):
         c = p.cell(i, col, v); c.font = INPUT; c.number_format = fmt
     p.cell(i, 5, mr).alignment = WRAP; p.cell(i, 6, ma).alignment = WRAP
+    p.cell(i, 7, "pct" if "%" in fmt else "num")
     for col in range(1, 7): p.cell(i, col).border = B
 p["A17"] = "Dirección: 1 = más alto es mejor · -1 = más bajo es mejor. Los rangos son referencias generales; ajústalos por sector."
 p["A17"].font = Font(italic=True)
@@ -128,8 +131,10 @@ for col, w in zip("ABCDEF", [26, 14, 11, 11, 12, 58]):
 g.merge_cells("A1:F1"); g["A1"] = "DIAGNÓSTICO FINANCIERO"
 g["A1"].font = Font(bold=True, size=16, color="1F3864")
 g["A2"] = '="Empresa: "&Datos!B2&"   ·   NIT: "&Datos!B3&"   ·   Sector: "&Datos!B4'
-g["A3"] = '="Periodo: "&Datos!B6&"   ·   Régimen: "&Datos!B5&"   ·   Fecha: "&TEXT(Datos!B7,"dd/mm/yyyy")'
-for c in ("A2", "A3"): g.merge_cells(f"{c}:F{c[1:]}")
+g["A3"] = '="Periodo: "&Datos!B6&"   ·   Régimen: "&Datos!B5'
+g.merge_cells("A2:F2"); g.merge_cells("A3:D3")
+g["E3"] = "Fecha:"; g["E3"].alignment = Alignment(horizontal="right")
+g["F3"] = "=Datos!B7"; g["F3"].number_format = "dd/mm/yyyy"; g["F3"].alignment = Alignment(horizontal="left")
 
 # Resumen de cifras
 g["A5"] = "CIFRAS CLAVE"; g["A5"].font = NEG
@@ -211,5 +216,136 @@ g.page_setup.orientation = "portrait"; g.page_setup.fitToWidth = 1; g.page_setup
 g.sheet_properties.pageSetUpPr.fitToPage = True
 g.print_options.horizontalCentered = True
 g.page_margins.left = g.page_margins.right = 0.4
+
+# ---------- Orden de hallazgos (columna auxiliar fuera del área de impresión) ----------
+g["G14"] = "Orden"; g["G14"].font = Font(color="808080", italic=True)
+for r in range(15, last + 1):
+    c = g.cell(r, 7, (f'=IF(E{r}="Rojo",COUNTIF(E$15:E{r},"Rojo"),IF(E{r}="Amarillo",'
+                      f'COUNTIF($E$15:$E${last},"Rojo")+COUNTIF(E$15:E{r},"Amarillo"),""))'))
+    c.font = Font(color="808080")
+
+# ---------- Parámetros de la propuesta ----------
+head(p, 20, ["Plan", "Precio mensual", "Incluye", "", "", ""])
+PLANES = [("Básico", 450_000, "Contabilidad mensual, declaraciones tributarias y facturación electrónica."),
+          ("Empresa", 750_000, "Básico + nómina electrónica, retenciones, información exógena e informe mensual."),
+          ("Crecimiento", 1_100_000, "Empresa + flujo de caja, presupuesto, indicadores y reunión mensual de resultados."),
+          ("CFO fraccional", 2_200_000, "Crecimiento + flujo de caja a 13 semanas, gestión de cartera e inventario, análisis de precios y márgenes, y acompañamiento en decisiones financieras.")]
+for i, (n_, pr_, inc) in enumerate(PLANES, 21):
+    p.cell(i, 1, n_).border = B
+    c = p.cell(i, 2, pr_); c.font = INPUT; c.number_format = COP; c.border = B
+    c = p.cell(i, 3, inc); c.font = INPUT; c.alignment = WRAP
+    p.merge_cells(start_row=i, start_column=3, end_row=i, end_column=6); p.row_dimensions[i].height = 30
+head(p, 27, ["Datos del contador", "", "", "", "", ""])
+CONT = [("Nombre", "[Tu nombre]"), ("Tarjeta profesional", "TP ______"), ("Teléfono / WhatsApp", "[300 000 0000]"),
+        ("Correo", "[correo@dominio.com]"), ("Ciudad", "Montería"), ("Validez de la propuesta (días)", 15),
+        ("Condiciones de pago", "Pago anticipado del día 1 al 5 de cada mes. Atraso mayor de 15 días suspende el servicio. Valores antes de IVA, si aplica.")]
+for i, (k, v) in enumerate(CONT, 28):
+    p.cell(i, 1, k); c = p.cell(i, 2, v); c.font = INPUT
+p.merge_cells("B34:F34"); p["B34"].alignment = WRAP; p.row_dimensions[34].height = 30
+d["A9"] = "Plan elegido (opcional; vacío = recomendado)"
+dvp = DataValidation(type="list", formula1="=Parametros!$A$21:$A$24", allow_blank=True)
+d.add_data_validation(dvp); dvp.add("B9"); d["B9"].font = INPUT
+
+# ---------- Propuesta ----------
+q = wb.create_sheet("Propuesta", 2)
+for col, w in zip("ABCDEF", [26, 16, 14, 14, 14, 48]):
+    q.column_dimensions[col].width = w
+q.merge_cells("A1:F1"); q["A1"] = "PROPUESTA DE SERVICIOS CONTABLES Y FINANCIEROS"
+q["A1"].font = Font(bold=True, size=15, color="1F3864")
+q.merge_cells("A2:F2"); q["A2"] = '="Para: "&Datos!B2&"   ·   NIT: "&Datos!B3'
+q["A3"] = "Fecha:"; q["B3"] = "=Datos!B7"; q["C3"] = "Válida hasta:"; q["D3"] = "=Datos!B7+Parametros!B33"
+q["E3"] = "=Parametros!B32"
+for c in ("B3", "D3"): q[c].number_format = "dd/mm/yyyy"; q[c].alignment = Alignment(horizontal="left")
+q["C3"].alignment = Alignment(horizontal="right")
+
+
+def titulo(r, t):
+    q.merge_cells(start_row=r, start_column=1, end_row=r, end_column=6)
+    c = q.cell(r, 1, t); c.fill, c.font = AZUL, BL
+
+
+titulo(5, "1. SITUACIÓN ENCONTRADA")
+q["A6"] = "Salud financiera"; q["B6"] = f"=Diagnostico!B{s}"; q["B6"].number_format = "0%"; q["B6"].font = NEG
+q["C6"] = f"=Diagnostico!C{s}"; q["C6"].font = NEG
+q["D6"] = "Rojo / amarillo / verde"; q["F6"] = f"=Diagnostico!B{s + 1}"
+head(q, 7, ["Hallazgo prioritario", "Resultado", "Meta", "Estado", "", "Qué haremos"])
+q.merge_cells("D7:E7")
+for i in range(1, 6):
+    r = 7 + i
+    m = f'MATCH({i},Diagnostico!$G$15:$G${last},0)'
+    q.cell(r, 1, f'=IFERROR(INDEX(Diagnostico!$A$15:$A${last},{m}),"")')
+    q.cell(r, 2, f'=IFERROR(INDEX(Diagnostico!$B$15:$B${last},{m}),"")')
+    q.cell(r, 3, f'=IFERROR(INDEX(Diagnostico!$C$15:$C${last},{m}),"")')
+    q.cell(r, 4, f'=IFERROR(INDEX(Diagnostico!$E$15:$E${last},{m}),"")')
+    q.merge_cells(start_row=r, start_column=4, end_row=r, end_column=5)
+    q.cell(r, 6, f'=IFERROR(INDEX(Diagnostico!$F$15:$F${last},{m}),"")').alignment = WRAP
+    q.cell(r, 2).number_format = "0.0"; q.cell(r, 3).number_format = "0.0"
+    c = q.cell(r, 7, f'=IFERROR(INDEX(Parametros!$G$2:$G${len(KPIS) + 1},{m}),"")'); c.font = Font(color="808080")
+    q.cell(r, 4).alignment = Alignment(horizontal="center")
+    q.row_dimensions[r].height = 32
+    for col in range(1, 7): q.cell(r, col).border = B
+q.conditional_formatting.add("B8:C12", Rule(type="expression", formula=['$G8="pct"'], dxf=DifferentialStyle(numFmt=NumberFormat(numFmtId=170, formatCode="0.0%"))))
+q.conditional_formatting.add("D8:D12", CellIsRule(operator="equal", formula=['"Rojo"'], fill=PatternFill("solid", fgColor="FFC7CE"), font=Font(color="9C0006", bold=True)))
+q.conditional_formatting.add("D8:D12", CellIsRule(operator="equal", formula=['"Amarillo"'], fill=PatternFill("solid", fgColor="FFEB9C"), font=Font(color="9C5700", bold=True)))
+
+titulo(14, "2. CAJA QUE SE PUEDE LIBERAR (estimación)")
+q["A15"] = "Cartera por encima de la meta"
+q["B15"] = '=IF(ISNUMBER(Diagnostico!B20),MAX(0,Diagnostico!B20-Diagnostico!C20)*Datos!B11/365,0)'
+q["A16"] = "Inventario por encima de la meta"
+q["B16"] = '=IF(ISNUMBER(Diagnostico!B21),MAX(0,Diagnostico!B21-Diagnostico!C21)*Datos!B12/365,0)'
+q["A17"] = "Total caja potencial"; q["A17"].font = NEG
+q["B17"] = "=B15+B16"; q["B17"].font = Font(bold=True, size=12)
+for r in (15, 16, 17): q[f"B{r}"].number_format = COP
+q.merge_cells("C15:F17")
+q["C15"] = ("Dinero inmovilizado en cartera e inventario por encima de los días meta. Llevar esos días a la meta "
+            "libera esa caja sin endeudarse. Es una estimación basada en las cifras del periodo; el resultado real "
+            "depende de la ejecución.")
+q["C15"].alignment = WRAP; q["C15"].font = Font(italic=True, size=9)
+
+titulo(19, "3. PLAN RECOMENDADO")
+q["A20"] = "Plan sugerido por el diagnóstico"
+q["B20"] = (f'=IF(COUNTIF(Diagnostico!$E$15:$E${last},"Rojo")>=3,"CFO fraccional",'
+            f'IF(COUNTIF(Diagnostico!$E$15:$E${last},"Rojo")>=1,"Crecimiento","Empresa"))')
+q["A21"] = "Plan propuesto"; q["A21"].font = NEG
+q["B21"] = '=IF(Datos!B9<>"",Datos!B9,B20)'; q["B21"].font = Font(bold=True, size=12, color="1F3864")
+q["A22"] = "Incluye"
+q.merge_cells("B22:F23")
+q["B22"] = '=IFERROR(VLOOKUP(B21,Parametros!$A$21:$C$24,3,FALSE),"")'; q["B22"].alignment = WRAP
+
+titulo(25, "4. CÓMO TRABAJAREMOS")
+pasos = [("Semana 1", "Recepción de información y accesos al software contable; plan de normalización de los hallazgos en rojo."),
+         ("Semanas 2–4", "Puesta al día contable y tributaria; primeras acciones sobre cartera, inventario y caja."),
+         ("Cada mes", "Cierre contable, declaraciones a tiempo e informe con indicadores y semáforo (este mismo formato)."),
+         ("Mes 3", "Revisión de resultados frente a este diagnóstico: ¿cuánta caja se liberó y qué indicadores mejoraron?")]
+for i, (k, v) in enumerate(pasos, 26):
+    q.cell(i, 1, k).font = NEG
+    q.merge_cells(start_row=i, start_column=2, end_row=i, end_column=6)
+    q.cell(i, 2, v).alignment = WRAP; q.row_dimensions[i].height = 28
+
+titulo(31, "5. INVERSIÓN")
+q["A32"] = "Valor mensual"; q["A32"].font = NEG
+q["B32"] = '=IFERROR(VLOOKUP(B21,Parametros!$A$21:$B$24,2,FALSE),"")'
+q["B32"].number_format = COP; q["B32"].font = Font(bold=True, size=12)
+q["C32"] = '=IF(AND(ISNUMBER(B32),B17>0),B32*12/B17,"")'; q["C32"].number_format = "0.0%"; q["C32"].font = Font(bold=True)
+q.merge_cells("D32:F32"); q["D32"] = "del valor anual frente a la caja potencial a liberar"; q["D32"].font = Font(italic=True, size=9)
+q["A33"] = "Condiciones"
+q.merge_cells("B33:F33"); q["B33"] = "=Parametros!B34"; q["B33"].alignment = WRAP; q.row_dimensions[33].height = 30
+
+titulo(35, "6. PRÓXIMO PASO")
+q.merge_cells("A36:F37")
+q["A36"] = ("Para iniciar: (1) aceptar esta propuesta respondiendo este mensaje o firmando abajo, (2) realizar el primer pago "
+            "y (3) enviar la información contable y los accesos. Iniciamos en los 3 días hábiles siguientes.")
+q["A36"].alignment = WRAP
+
+q["A40"] = "_____________________________"; q["D40"] = "_____________________________"
+q["A41"] = "=Parametros!B28"; q["D41"] = "Aceptado por: " ; q["A42"] = '="Contador Público · "&Parametros!B29'
+q["D42"] = "=Datos!B2"
+q["A43"] = '=Parametros!B30&" · "&Parametros!B31'; q["A43"].font = Font(size=9)
+
+q.print_area = "A1:F43"
+q.page_setup.orientation = "portrait"; q.page_setup.fitToWidth = 1; q.page_setup.fitToHeight = 1
+q.sheet_properties.pageSetUpPr.fitToPage = True
+q.print_options.horizontalCentered = True
+q.page_margins.left = q.page_margins.right = 0.4
 
 wb.save("plantillas/diagnostico-financiero-pyme.xlsx")
