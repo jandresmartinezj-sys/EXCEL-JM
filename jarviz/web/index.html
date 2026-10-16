@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JARVIZ">
+<title>JARVIZ</title>
+<link rel="manifest" href="/static/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/static/icon-180.png">
+<link rel="stylesheet" href="/static/styles.css">
+<script src="/static/app.js" defer></script>
+</head>
+<body>
+<!-- Inicio de sesión -->
+<section id="login" class="screen hidden" aria-labelledby="login-title">
+  <div class="login-card">
+    <div class="brand"><span class="orb" aria-hidden="true"></span><h1 id="login-title">JARVIZ</h1></div>
+    <p class="muted">Centro de mando de la firma</p>
+    <form id="login-form" autocomplete="on">
+      <label>Usuario<input name="username" autocomplete="username" required minlength="3"></label>
+      <label>Contraseña<input name="password" type="password" autocomplete="current-password" required></label>
+      <button class="btn primary" type="submit">Entrar</button>
+      <p id="login-error" class="error" role="alert"></p>
+    </form>
+  </div>
+</section>
+
+<!-- Aplicación -->
+<section id="app" class="screen hidden">
+  <header class="topbar">
+    <div class="brand small"><span class="orb" aria-hidden="true"></span><strong>JARVIZ</strong></div>
+    <span id="mode-chip" class="chip"></span>
+  </header>
+
+  <main id="views">
+    <!-- Inicio -->
+    <div class="view" id="v-home">
+      <div id="demo-banner" class="banner hidden">Datos de DEMOSTRACIÓN: las cifras no son reales.</div>
+      <div class="quick">
+        <button class="chipbtn" data-q="Dame el estado general del negocio">Estado del negocio</button>
+        <button class="chipbtn" data-q="¿Qué debería priorizar esta semana?">Prioridades</button>
+        <button class="chipbtn" data-q="¿Qué obligaciones vencen pronto?">Obligaciones</button>
+        <button class="chipbtn" data-q="Identifica oportunidades de negocio">Oportunidades</button>
+      </div>
+      <h2>Alertas prioritarias</h2>
+      <ul id="home-alerts" class="list"></ul>
+      <h2>Indicadores <span id="kpi-asof" class="muted small"></span></h2>
+      <div id="kpis" class="grid"></div>
+    </div>
+
+    <!-- Conversación -->
+    <div class="view hidden" id="v-chat">
+      <ol id="chat" class="chat" aria-live="polite"></ol>
+      <div id="listening" class="listening hidden" role="status"><span class="dot"></span> Escuchando… habla ahora</div>
+      <form id="cmd-form" class="composer">
+        <input id="cmd" placeholder="Escribe o dicta una instrucción" autocomplete="off" maxlength="2000" aria-label="Instrucción">
+        <button type="button" id="mic" class="mic" aria-label="Hablar con JARVIZ" title="Hablar">🎙</button>
+        <button type="button" id="stop" class="stop hidden" aria-label="Detener">■</button>
+        <button type="submit" class="btn primary">Enviar</button>
+      </form>
+      <p class="muted tiny">El audio lo procesa el reconocimiento de voz del navegador (en iPhone, el servicio de Apple). A JARVIZ solo llega el texto; no se guardan grabaciones.</p>
+    </div>
+
+    <!-- Tareas -->
+    <div class="view hidden" id="v-tasks">
+      <div class="row"><h2>Tareas</h2>
+        <select id="task-filter" aria-label="Filtrar tareas">
+          <option value="">Todas</option><option value="pending">Pendientes</option><option value="running">En ejecución</option>
+          <option value="awaiting_approval">Esperando aprobación</option><option value="completed">Completadas</option>
+          <option value="failed">Fallidas</option><option value="cancelled">Canceladas</option>
+        </select></div>
+      <ul id="tasks" class="list"></ul>
+    </div>
+
+    <!-- Aprobaciones -->
+    <div class="view hidden" id="v-approvals">
+      <h2>Bandeja de aprobaciones</h2>
+      <p class="muted small">Acciones externas o irreversibles. Solo el propietario decide. Aprobar no ejecuta integraciones que no existen: te indica qué hacer manualmente.</p>
+      <ul id="approvals" class="list"></ul>
+    </div>
+
+    <!-- Más -->
+    <div class="view hidden" id="v-more">
+      <nav class="subnav">
+        <button data-sub="clients" class="active">Clientes</button><button data-sub="alerts">Alertas</button>
+        <button data-sub="agents">Agentes</button><button data-sub="audit">Auditoría</button><button data-sub="settings">Ajustes</button>
+      </nav>
+      <div id="s-clients" class="sub"><ul id="clients" class="list"></ul></div>
+      <div id="s-alerts" class="sub hidden"><ul id="alerts" class="list"></ul></div>
+      <div id="s-agents" class="sub hidden"><ul id="agents" class="list"></ul></div>
+      <div id="s-audit" class="sub hidden"><p id="audit-integrity"></p><ul id="audit" class="list mono"></ul></div>
+      <div id="s-settings" class="sub hidden">
+        <div class="card">
+          <h3>Voz</h3>
+          <label class="switch"><input type="checkbox" id="tts-toggle"> Leer las respuestas en voz alta</label>
+          <p id="voice-support" class="muted small"></p>
+        </div>
+        <div class="card owner-only">
+          <h3>Nivel de autonomía</h3>
+          <select id="autonomy" aria-label="Nivel de autonomía">
+            <option value="1">1 · Consulta</option><option value="2">2 · Preparación</option><option value="3">3 · Ejecución interna</option>
+            <option value="4">4 · Ejecución externa aprobada</option><option value="5">5 · Automatización supervisada</option>
+          </select>
+          <p class="muted small">Las acciones externas, pagos, firmas, declaraciones y borrados requieren aprobación en cualquier nivel.</p>
+        </div>
+        <div class="card owner-only">
+          <h3>Siri y Atajos</h3>
+          <p class="muted small">Genera un token personal para el Atajo "JARVIZ" (ver docs/IPHONE.md). Se muestra una sola vez.</p>
+          <button class="btn" id="gen-token">Generar token personal</button>
+          <pre id="token-out" class="mono hidden"></pre>
+        </div>
+        <div class="card owner-only">
+          <h3>Procesos programados</h3>
+          <button class="btn" id="run-scheduled">Ejecutar alertas y vigilancia ahora</button>
+          <p id="sched-out" class="muted small"></p>
+        </div>
+        <div class="card">
+          <h3>Privacidad</h3>
+          <button class="btn" id="clear-chat">Borrar mi historial de conversación</button>
+          <button class="btn danger" id="logout">Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <nav class="tabbar" aria-label="Navegación principal">
+    <button data-view="home" class="active">Inicio</button>
+    <button data-view="chat" class="voice-tab" aria-label="Hablar con JARVIZ">JARVIZ</button>
+    <button data-view="tasks">Tareas</button>
+    <button data-view="approvals">Aprobar <span id="appr-badge" class="badge hidden"></span></button>
+    <button data-view="more">Más</button>
+  </nav>
+</section>
+
+<dialog id="kpi-dialog"><div id="kpi-detail"></div><form method="dialog"><button class="btn">Cerrar</button></form></dialog>
+</body>
+</html>

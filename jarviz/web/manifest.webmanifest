@@ -1,0 +1,19 @@
+{
+  "name": "JARVIZ",
+  "short_name": "JARVIZ",
+  "description": "Centro de mando de la firma contable, tributaria y financiera",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
+  "lang": "es-CO",
+  "icons": [
+    {"src": "/static/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/static/icon-512.png", "sizes": "512x512", "type": "image/png"}
+  ],
+  "shortcuts": [
+    {"name": "Estado del negocio", "url": "/?q=Dame%20el%20estado%20general%20del%20negocio"},
+    {"name": "Prioridades", "url": "/?q=Qu%C3%A9%20debo%20priorizar%20esta%20semana"}
+  ]
+}
